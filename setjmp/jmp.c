@@ -37,6 +37,6 @@ int main(void)
 	a();
 
 	/* not reach here */
-	printf("anything wrong\n");
+	printf("something wrong\n");
 	return 1;
 }
