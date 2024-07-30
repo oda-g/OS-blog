@@ -15,6 +15,9 @@ static struct func_context *head, *tail;
 static struct func_context func_context[NUM_THREAD];
 static ucontext_t con_sched;
 
+/* CAUTION: must be sure the stack size is enough or
+ * should add to handle stack overflow.
+ */ 
 #define STACK_SIZE 10000
 static char stack[NUM_THREAD][STACK_SIZE];
 
@@ -48,14 +51,12 @@ static int sched(void)
 	struct func_context *con;
 
 	if (getcontext(&con_sched) == -1) {
-		/* note: not fail basically */
 		perror("sched: getcontext");
 		return 1;
 	}
 	con = get_sched_q();
 	if (con) {
 		if (setcontext(&con->ucontext) == -1) {
-			/* note: not fail basically */
 			perror("sched: setcontext");
 			return 1;
 		}
@@ -70,11 +71,10 @@ static void yeild(int id)
 
 	put_sched_q(con);
 	if (swapcontext(&con->ucontext, &con_sched) == -1) {
-		/* note: not fail basically */
 		perror("swapcontest");
 		exit(1);
 	}
-	/* note: swapcontext returns 0 if resumed. */
+	/* note: swapcontext returns 0 when resumed. */
 }
 
 static void func(int id)
@@ -91,7 +91,6 @@ static int create_thread(int id)
 	ucontext_t *ucon = &con->ucontext;
 
 	if (getcontext(ucon) == -1) {
-		/* note: not fail basically */
 		perror("getcontext");
 		return 1;
 	}
