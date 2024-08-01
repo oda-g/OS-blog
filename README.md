@@ -10,9 +10,10 @@ Web記事「OS徒然草」の補足的資料です。
 
 - [OS徒然草(1)](https://valinux.hatenablog.com/entry/20240725)  
 本記事からの参照はありません。
-- OS徒然草(2) (執筆中)  
+- OS徒然草(2) (レビュー中)(8/27公開予定)  
   - [setjumpコード、補足](https://github.com/oda-g/OS-blog/tree/main/setjmp)
   - [コンテキストスイッチコード、補足](https://github.com/oda-g/OS-blog/tree/main/context_switch)
+- OS徒然草(3) (執筆中)
 
 ## 補足
 
