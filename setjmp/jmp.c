@@ -10,21 +10,21 @@ static void c(void)
 {
 	printf("func c called\n");
 	longjmp(env, 1);
-	/* not return */
+	printf("not reach here\n");
 }
 
 static void b(void)
 {
 	printf("func b called\n");
 	c();
-	/* not return */
+	printf("not reach here\n");
 }
 
 static void a(void)
 {
 	printf("func a called\n");
 	b();
-	/* not return */
+	printf("not reach here\n");
 }
 
 int main(void)
@@ -36,7 +36,6 @@ int main(void)
 
 	a();
 
-	/* not reach here */
-	printf("something wrong\n");
+	printf("not reach here\n");
 	return 1;
 }
