@@ -56,7 +56,7 @@ PTEメモ:
 - RSW: 2ビット分、ソフトが自由に使えるフィールド。
 - どの段のPTEもleafになれる。ex. SV39では、2MiBと1GiBのラージページ(仕様書では、superpageという用語を使用)を使用可能。
 
-ページテーブルをポイントするコントロールレジスタは、stap (4.1.11)。
+ページテーブルをポイントするコントロールレジスタは、stap (4.1.11)。以下のフィールドで構成されている。
 - MODE: 仮想空間のタイプ(ex. SV39)。Bare(アドレス変換なし)も指定可能。
 - ASID: 16bit。address space identifier。アドレス変換キャッシュの処理(sfence.vma)に影響。
 - PPN: 最上段ページテーブルのphysical page number。
