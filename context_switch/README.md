@@ -51,6 +51,6 @@ funcの処理終了時は、uc_linkの設定により、schedに切り替わる�
 
 Linuxカーネルのschedule()と近いイメージにしてみたのがこちら。cswitch.cでは、スレッドの切り替えのためにいちいち、sched(main)コンテキストへ切り替えていたが、こちら(cswitch_alt.c)では、各スレッドがsched()を呼び出した延長で切り替えが行われている。図にすると、以下のようになる。
 
-![](https://github.com/oda-g/OS-blog/blob/main/blog-diag/context-switch_alt.png)
+![スレッド切り替え](https://github.com/oda-g/OS-blog/blob/main/blog-diag/context-switch-alt.png)
 
 Linuxカーネルでは、schedule()がコンテキスト切り替えポイントになっている。コード中では、単にschedule()を呼び出しているだけのようだが、実はその中でCPUを奪われ、他のスレッドが実行されてるかもしれない。その後、何食わぬ顔をして復帰しているかもしれない、と想像しながら読むと楽しいかもしれない。(何事もなくそのまま復帰しているかもしれない。)
