@@ -49,7 +49,7 @@ funcの処理終了時は、uc_linkの設定により、schedに切り替わる�
 
 ## 別バージョン(cswitch_alt.c)
 
-Linuxカーネルのschedule()と近いイメージにしてみたのがこちら。cswitch.cでは、スレッドの切り替えのためにいちいち、sched(main)コンテキストへ切り替えていたが、こちら(cswitch_alt.c)では、各スレッドがsched()を呼び出した延長で切り替えが行われている。図にすると、以下のようになる。
+Linuxカーネルのschedule()と近いイメージにしてみたのがこちら。cswitch.cでは、スレッドの切り替えのためにいちいち、sched(main)コンテキストへ切り替えていたが、こちら(cswitch_alt.c)では、各スレッドがsched()を呼び出した延長で切り替えが行われている。図にすると、以下のようになる。(図にすると、こちらの方が単純だが、コードは元の方が分かり易そうな気がするので、ブログの方はそのままとした。)
 
 ![スレッド切り替え](https://github.com/oda-g/OS-blog/blob/main/blog-diag/context-switch-alt.png)
 
