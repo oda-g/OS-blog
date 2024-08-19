@@ -13,7 +13,7 @@
 - OS徒然草(2) (レビュー中)(8/27公開予定)  
   - [setjumpコード、補足](https://github.com/oda-g/OS-blog/tree/main/setjmp)
   - [コンテキストスイッチコード、補足](https://github.com/oda-g/OS-blog/tree/main/context_switch)
-- OS徒然草(3) (レビュー中)(9/26公開予定)
+- OS徒然草(3) (レビュー中)(9/25公開予定)
   - [仮想空間メモ](https://github.com/oda-g/OS-blog/tree/main/virtual_address)
 - OS徒然草(4) (執筆中)
 
