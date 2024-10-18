@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define NUM_COUNT 1000000
+#define NUM_COUNT 100000000
 
 static int *total_count;
 
@@ -29,13 +29,13 @@ int main(void)
 	} else if (pid == 0) {
 		/* child */
 		for (i = 0; i < NUM_COUNT; i++) {
-			(*total_count)++;
+			__atomic_fetch_add(total_count, 1, __ATOMIC_RELAXED);
 		}
 		exit(0);
 	} else {
 		/* parent */
 		for (i = 0; i < NUM_COUNT; i++) {
-			(*total_count)++;
+			__atomic_fetch_add(total_count, 1, __ATOMIC_RELAXED);
 		}
 	}
 

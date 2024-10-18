@@ -6,10 +6,12 @@
 #include <unistd.h>
 #include <semaphore.h>
 
-#define NUM_COUNT 1000000
+#define NUM_COUNT 100000000
 
-static int *total_count;
-static sem_t *sem;
+static struct {
+	int total_count;
+	sem_t sem;
+} *common_memory;
 
 int main(void)
 {
@@ -17,15 +19,18 @@ int main(void)
 	int i;
 	int wstatus;
 	int err = 0;
+	int *total_count;
+	sem_t *sem;
 
-	total_count = mmap(NULL, sizeof(*total_count) + sizeof(sem_t),
+	common_memory = mmap(NULL, sizeof(*common_memory),
 		PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_SHARED, -1, 0);
-	if (total_count == MAP_FAILED) {
+	if (common_memory == MAP_FAILED) {
 		perror("mmap");
 		return 1;
 	}
+	total_count = &common_memory->total_count;
+	sem = &common_memory->sem;
 	*total_count = 0;
-	sem = (sem_t *)(total_count + 1);
 
 	if (sem_init(sem, 1, 1) == -1) {
 		perror("sem_init");
