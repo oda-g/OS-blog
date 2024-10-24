@@ -15,9 +15,9 @@
   - [コンテキストスイッチコード、補足](https://github.com/oda-g/OS-blog/tree/main/context_switch)
 - [OS徒然草(3)](https://valinux.hatenablog.com/entry/20240919)
   - [仮想空間メモ](https://github.com/oda-g/OS-blog/tree/main/virtual_address)
-- OS徒然草(4) (10/24公開予定)  
+- [OS徒然草(4)](https://valinux.hatenablog.com/entry/20241024)  
 本記事からの参照はありません。
-- OS徒然草(5) (執筆中)
+- OS徒然草(5) (執筆中)(11/21公開予定)
 
 ## 補足
 
