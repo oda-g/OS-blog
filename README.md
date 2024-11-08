@@ -17,7 +17,10 @@
   - [仮想空間メモ](https://github.com/oda-g/OS-blog/tree/main/virtual_address)
 - [OS徒然草(4)](https://valinux.hatenablog.com/entry/20241024)  
 本記事からの参照はありません。
-- OS徒然草(5) (執筆中)(11/21公開予定)
+- OS徒然草(5) (社内レビュー中)(11/21公開予定)
+  - [競合状態補足](https://github.com/oda-g/OS-blog/tree/main/race_condition)
+  - [シグナル処理補足](https://github.com/oda-g/OS-blog/tree/main/race_condition)
+- OS徒然草(6) (執筆)(12月後半公開予定)
 
 ## 補足
 
