@@ -19,7 +19,7 @@
 本記事からの参照はありません。
 - OS徒然草(5) (社内レビュー中)(11/21公開予定)
   - [競合状態補足](https://github.com/oda-g/OS-blog/tree/main/race_condition)
-  - [シグナル処理補足](https://github.com/oda-g/OS-blog/tree/main/race_condition)
+  - [シグナル処理補足](https://github.com/oda-g/OS-blog/tree/main/signal)
 - OS徒然草(6) (執筆)(12月後半公開予定)
 
 ## 補足
