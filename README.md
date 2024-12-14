@@ -20,7 +20,9 @@
 - [OS徒然草(5)](https://valinux.hatenablog.com/entry/20241121)
   - [競合状態補足](https://github.com/oda-g/OS-blog/tree/main/race_condition)
   - [シグナル処理補足](https://github.com/oda-g/OS-blog/tree/main/signal)
-- OS徒然草(6) (執筆中)(12/26公開予定)
+- OS徒然草(6) (社内レビュー中)(12/26公開予定)
+  - [ファイル管理補足](https://github.com/oda-g/OS-blog/tree/main/file_management)
+- OS徒然草(7) (構想中)
 
 ## 補足
 
