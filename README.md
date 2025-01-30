@@ -22,7 +22,7 @@
   - [シグナル処理補足](https://github.com/oda-g/OS-blog/tree/main/signal)
 - [OS徒然草(6)](https://valinux.hatenablog.com/entry/20241226)
   - [ファイル管理補足](https://github.com/oda-g/OS-blog/tree/main/file_management)
-- OS徒然草(7) (社内レビュー中)(1/30公開予定)  
+- [OS徒然草(7)](https://valinux.hatenablog.com/entry/20250130)  
 本記事からの参照はありません。
 - OS徒然草(8)... (構想中。2025年4月再開予定)
 
