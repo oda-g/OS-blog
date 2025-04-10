@@ -31,7 +31,7 @@ task_structはコピーされるが、ポイントされている制御表のう
 - CLONE_FS  
 filesystem関連の属性(root dir、current dir、umask)を共有。
 - CLONE_FILES  
-ファイルディスクリプタを共有。
+ファイルディスクリプタテーブルを共有。
 - CLONE_SIGHAND  
 シグナルハンドラを共有。
 - CLONE_SYSVSEM  
@@ -64,25 +64,37 @@ Linuxの取ったアプローチにより、共有される部分をきめ細か
 マルチスレッドプログラムに関しては、forkしたときにどうなるのかという疑問があろうかと思う。Linuxにおいては、デフォルトフラグ(CLONE_THREADはなし)で、呼び出し元のtask_structをコピーするだけのことで、ある意味分かり易い。pid、ppidの扱いにのみ注意が必要(というか分かり難い)で、スレッドからforkされた子プロセスのppidは、呼び出し元スレッドのスレッドグループリーダの親のpidとなる。(例を図示)
 
 ```
-parent of main (pid: 100, tid:100)
+parent of main (tid: 100, pid:100)
   |
   | fork
   v
-main (pid: 101, tid: 101, ppid: 100)  スレッドリーダ
+main (tid: 101, pid: 101, ppid: 100)  スレッドリーダ
   |
   | clone(CLONE_THREAD)
   v
-thread (pid: 101, tid: 102, ppid: 100)
+thread (tid: 102, pid: 101, ppid: 100)
   |
   | fork
   v
-child of thread (pid: 103, tid: 103, ppid: 100) スレッドリーダ
+child of thread (tid: 103, pid: 103, ppid: 100) スレッドリーダ
 ```
 
-psコマンドは、/proc を見て、プロセス情報を取得しているとのこと。「ls /proc」(すなわち、/proc を readdir)すると、スレッドリーダのものしか出てこない。上の例だと、103は出てくるが、102は出てこない。ただし、「/proc/102」とフルパスで指定してアクセス可能である。このあたりの仕様も分かりづらい。
+/proc の下はどうなるかというと、「ls /proc」(すなわち、/proc を readdir)すると、スレッドリーダのものしか出てこない。上の例だと、103は出てくるが、102は出てこない。ただし、「/proc/102」とフルパスで指定してアクセス可能である。このあたりの仕様も分かりづらい。
 
 ブログ本編のデータ構造を採用した場合、fork したときの動作をどうするかであるが、子プロセスの実行コンテキスト管理データとしては、forkを呼び出したスレッドのものひとつだけを持った状態でスタートするのが適切であると考えられる。
 
 ### 補足(ファイル共有)
 
-- file
+ファイルがどう共有されているのか、制御表の共有図をイメージすると分かり易い。
+
+![同一ファイルを別プロセスがオープン](https://github.com/oda-g/OS-blog/blob/main/blog-diag/file_share_1.png)
+
+同じファイルなので、inodeはひとつで共有。file構造体、ファイルディスクリプタテーブルは別々なので、一方のプロセスがcloseしても他方ではopenされたままだし、一方のプロセスがread/writeしても、他方のプロセスのファイルオフセットに変化はない。
+
+![forkした場合の親と子](https://github.com/oda-g/OS-blog/blob/main/blog-diag/file_share_2.png)
+
+ファイルディスクリプタテーブルは別であるが、file構造体は共有した形となる。file構造体を共有しているということは、read/write時のファイルオフセットを共有しているということ。ファイルディスクリプタテーブルは別なので、一方井のプロセスがcloseしても、他方のプロセスからは依然アクセス可能(file構造体の参照カウントがデクリメントされている)。また、一方のプロセスが新たにファイルをopenしても、他方からはアクセスできない。
+
+![スレッド(CLONE_FILES)での共有](https://github.com/oda-g/OS-blog/blob/main/blog-diag/file_share_3.png)
+
+フィルディスクリプタテーブルから共有している。どれかのスレッドがcloseすれば、全スレッドから見えなくなるし、どれかのスレッドがopenすれば、全スレッドからアクセス可能。
