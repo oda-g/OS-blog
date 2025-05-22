@@ -26,8 +26,9 @@
 本記事からの参照はありません。
 - [OS徒然草(8)](https://valinux.hatenablog.com/entry/20250424)  
 本記事からの参照はありません。
-- OS徒然草(9)(社内レビュー中。2025年5月22日公開予定)
-- OS徒然草(10)(執筆中。2025年6月公開予定。これにて一旦終了予定)
+- [OS徒然草(9)](https://www.valinux.co.jp/blog/entry/20250522)
+  - [マルチスレッド](https://github.com/oda-g/OS-blog/tree/main/multi_thread)
+- OS徒然草(10)(社内レビュー中。2025年6月公開予定。これにて一旦終了予定)
 
 ## 補足
 
