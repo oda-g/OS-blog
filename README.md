@@ -28,7 +28,10 @@
 本記事からの参照はありません。
 - [OS徒然草(9)](https://www.valinux.co.jp/blog/entry/20250522)
   - [マルチスレッド](https://github.com/oda-g/OS-blog/tree/main/multi_thread)
-- OS徒然草(10)(社内レビュー中。2025年6月公開予定。これにて一旦終了予定)
+- [OS徒然草(10)](https://www.valinux.co.jp/blog/entry/20250626)  
+本記事からの参照はありません。
+
+OS徒然草(10)で一旦完結です。
 
 ## 補足
 
